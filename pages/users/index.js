@@ -2,17 +2,20 @@ import axios from 'axios'
 import React from 'react'
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 const Users = ({users}) => {
+    const router = useRouter()
+    const onPress = (id) => {
+        router.push(`/users/${id}`)
+        return
+    }
+
     return (
         <div>
             {users.map(user => (
-                <div>
+                <div key={user.id}>
                     <ul>
-                        <Link href={`/users/${user.id}`}>
-                        <a>
-                            <li className={styles.card} key={user.id}>{user.name}</li>
-                        </a>
-                        </Link>
+                        <li className={styles.card} onClick={() => onPress(user.id)} key={user.id}>{user.name}</li>
                     </ul>
                 </div>
             ))}

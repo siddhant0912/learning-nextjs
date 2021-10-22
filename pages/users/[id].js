@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import styles from '../../styles/Home.module.css'
 const User = ({user}) => {
     if(user.error){
         return <div>{user.error}</div>
