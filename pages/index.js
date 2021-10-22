@@ -35,13 +35,15 @@ export default function Home() {
               <p>Read What Other People have to say......</p>
             </a>
           </Link>
+          <Link href="/users">
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
             className={styles.card}
           >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+            <h2>Server Side Rendering &rarr;</h2>
+            <p>Click here to get HTML generated from server</p>
           </a>
+          </Link>
+          
 
           <a
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../../styles/Home.module.css'
@@ -13,7 +14,7 @@ export default function PostList({posts}){
                         <ul>
                             <Link href={`/posts/${post.id}`}>
                             <a>
-                            <li  className={styles.card}>{post.title}</li>
+                            <li key={post.id}  className={styles.card}>{post.title}</li>
                             </a>
                            </Link>
                         </ul>
@@ -25,9 +26,8 @@ export default function PostList({posts}){
 }
 
 export async function getStaticProps({params}){
-    const req = await fetch(`http://localhost:3000/posts.json`)
-    const data = await req.json()
-    console.log('datat',data)
+    const res= await axios.get(`http://localhost:3000/posts.json`)
+    const data = res.data
     return {
         props : {posts :data}
     }

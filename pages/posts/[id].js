@@ -1,10 +1,7 @@
-import {useRouter} from 'next/router'
 import Head from 'next/head'
+import axios from 'axios'
 
 export default function Post({post}){
-    const router= useRouter()
-    const { id } = router.query
-
     return (
         <div>
             <Head>
@@ -19,18 +16,16 @@ export default function Post({post}){
 }
 
 export async function getStaticProps({params}){
-    const req = await fetch(`http://localhost:3000/post${params.id}.json`)
-    const data = await req.json()
-    console.log('data',data)
+    const res = await axios.get(`http://localhost:3000/post${params.id}.json`)
     return {
-        props : {post :data}
+        props : {post :res.data}
     }
 }
 
 export async function getStaticPaths(){
-    const req = await fetch('http://localhost:3000/posts.json')
-    const data = await req.json()
-
+    const res = await axios.get('http://localhost:3000/posts.json')
+    let data = []
+    data = res.data
     const paths = data.map(post =>{
         return {params :{id:post.id}}
     })
